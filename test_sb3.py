@@ -1,11 +1,12 @@
 import gym
 import time
 import torch
-from gym.wrappers import Monitor
+# from gym.wrappers import Monitor
 import phoenix_drone_simulation
-from gym import wrappers
+# from gym import wrappers
 from stable_baselines3 import PPO, SAC 
-# from adversaryhover_phoenix import DroneHoverBulletEnvWithAdversary
+from stable_baselines3.common.vec_env import VecVideoRecorder, DummyVecEnv
+
 
 
 def test_with_sb3(env_id='DroneHoverBulletEnvWithAdversary-v0', alg='PPO', path=None):
@@ -30,11 +31,15 @@ def test_with_sb3(env_id='DroneHoverBulletEnvWithAdversary-v0', alg='PPO', path=
         print("Please check out the algorithm name again.")
     print("The model has been loaded successfully!")
     
-    # test
-    video_dir = '/localhome/hha160/projects/quadrotor-stabilization/test_videos'
-    env = Monitor(env, video_dir, force=True)
-    # env.render() 
+    video_folder = '/localhome/hha160/projects/quadrotor-stabilization/test_videos'
+    video_length = 100
+
+    # env = VecVideoRecorder(env, video_folder, record_video_trigger=lambda x: x == 0, 
+    #                        video_length=video_length, name_prefix=f"random-agent-{env_id}")
+    
+    env.render() 
     while True:
+    # for _ in range(video_length+1):
         obs = env.reset()
         done = False
         while not done:

@@ -61,7 +61,9 @@ Try command `python -m phoenix_drone_simulation.train --alg ppo --env DroneHover
 This works but it takes so long. So just stop.
 
 2023.8.28
-Test command: python -m phoenix_drone_simulation.play --ckpt PATH_TO_CKPT
+Test command: python -m phoenix_drone_simulation.play --ckpt PATH_TO_CKPT; # Interesting thing: this test env seems to be different of our codes, like `test_hhy.py` etc. Why?
+Train with our adversaryhover_phoenix.py: `python adversaryhover_phoenix.py`; 
+Compare it with `python -m phoenix_drone_simulation.train --alg ppo --env DroneHoverBulletEnvWithAdversary-v0 --log-dir /localhome/hha160/projects/quadrotor-stabilization/runs/original_ppo/our_distb` (not start yet today). # I think the later one will have a better performance because of the usage of the parallel tool `mpi`.
 
 
 ## Transfer sb3
